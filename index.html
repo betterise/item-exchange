@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物品請求平台</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <!-- 頂部導航欄（預設隱藏） -->
+  <nav id="top-nav" style="display: none;">
+    <a href="#home">首頁</a>
+    <a href="#requests">請求列表</a>
+    <a href="#contact">聯絡我們</a>
+  </nav>
+
+  <div class="container">
+    <h1>歡迎使用物品請求平台！</h1>
+    <p>請填寫以下表格來提交你的物品請求。</p>
+
+    <!-- 請求表單 -->
+    <form id="request-form">
+      <label for="item-name">物品名稱：</label>
+      <input type="text" id="item-name" name="item-name" required>
+
+      <label for="item-description">物品描述：</label>
+      <textarea id="item-description" name="item-description" rows="4" required></textarea>
+
+      <label for="user-name">你的名字：</label>
+      <input type="text" id="user-name" name="user-name" required>
+
+      <button type="submit">提交請求</button>
+    </form>
+
+    <!-- 請求列表 -->
+    <div id="requests-list">
+      <h2>請求列表</h2>
+      <ul id="requests"></ul>
+    </div>
+  </div>
+
+  <!-- 底部導航欄（預設隱藏） -->
+  <nav id="bottom-nav" style="display: none;">
+    <a href="#home">首頁</a>
+    <a href="#requests">請求列表</a>
+    <a href="#contact">聯絡我們</a>
+  </nav>
+
+  <script src="app.js"></script>
+  <script>
+    // 註冊 Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/my-pwa-app/sw.js')
+        .then(function(registration) {
+          console.log('Service Worker 註冊成功：', registration.scope);
+        })
+        .catch(function(error) {
+          console.log('Service Worker 註冊失敗：', error);
+        });
+    }
+  </script>
+</body>
+</html>
